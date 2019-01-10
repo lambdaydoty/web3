@@ -1,0 +1,5 @@
+./node_modules/openzeppelin-solidity/test/token/ERC20/ERC20.test.js
+./node_modules/openzeppelin-solidity/test/token/ERC20/ERC20Detailed.test.js
+./node_modules/openzeppelin-solidity/test/token/ERC20/ERC20Capped.test.js
+./node_modules/openzeppelin-solidity/test/ownership/Ownable.test.js
+
