@@ -58,7 +58,6 @@ module.exports = {
     },
     // Useful for deploying to a public network.
     ropsten: {
-      // provider: function () { return new HDWalletProvider( process.env.MNEMONIC, process.env.INFURA_ROPSTEN) },
       provider: () => new HDWalletProvider(process.env.MNEMONIC, process.env.INFURA_ROPSTEN),
       network_id: 3, // Ropsten's id
       // gas: 5500000,        // Ropsten has a lower block limit than mainnet
@@ -67,7 +66,6 @@ module.exports = {
       // skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
     },
     live: {
-      // provider: function () { return new HDWalletProvider( process.env.MNEMONIC_OWNER, process.env.INFURA_ROPSTEN) },
       provider: () => new HDWalletProvider(process.env.MNEMONIC, process.env.INFURA_MAINNET),
       network_id: 1,
       // gas: 5500000,        // Ropsten has a lower block limit than mainnet
@@ -85,8 +83,8 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      // version: "0.5.1",    // Fetch exact version from solc-bin (default: truffle's version)
-      // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
+      version: '0.4.25', // Fetch exact version from solc-bin (default: truffle's version)
+      // docker: true,   // Use "0.5.1" you've installed locally with docker (default: false)
       settings: {
         optimizer: {
           enabled: false,

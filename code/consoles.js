@@ -1,11 +1,3 @@
-// module.exports = {
-//   toNumber,
-//   toFormat,
-//   sideEffect,
-//   first,
-//   rest,
-// }
-
 module.exports = host => {
   host.toNumber = bn => bn.toNumber()
   host.toFormat = bn => bn.toFormat()
