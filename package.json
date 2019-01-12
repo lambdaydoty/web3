@@ -24,7 +24,7 @@
     "request-promise": "^4.2.2",
     "truffle": "^5.0.1",
     "truffle-hdwallet-provider": "^1.0.1",
-    "web3": "^0.20.7"
+    "web3": "^1.0.0-beta.37"
   },
   "devDependencies": {
     "eslint": "^5.12.0",
