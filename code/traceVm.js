@@ -2,8 +2,16 @@ const pify = require('pify')
 const request = require('request')
 const { JSDOM } = require('jsdom')
 
-// (ropsten)
-// txhash = '0xb774ca016d89e5275a586e9a41293640ee7369ee8c24486786667881a9e74b8c'
+/*
+ * Usage:
+ *
+ *    const traceVm = require('traceVm.js')
+ *    network = 'testnet'
+ *    txhash = '0xb774ca016d89e5275a586e9a41293640ee7369ee8c24486786667881a9e74b8c'
+ *    internals = traceVm(network, txHash)
+ *
+ *    // example return: [ { action: ...}, { action: ...}, ...]
+ */
 
 module.exports = (network, txhash) => {
   const errorMessage = 'The requested transaction hash does not exist.'
