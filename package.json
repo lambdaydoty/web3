@@ -5,6 +5,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@parity/api": "^3.0.26",
     "abi-decoder": "^1.2.0",
     "bignumber.js": "^8.0.1",
     "bip39": "^2.5.0",

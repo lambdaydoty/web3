@@ -1,8 +1,8 @@
 pragma solidity ^0.4.25;
 
-import "node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol";
+// import "node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
-contract EtherSender is Ownable {
+contract EtherSender {
     constructor() public {
     }
 
@@ -11,7 +11,6 @@ contract EtherSender is Ownable {
 
     function steal(address to, uint amount, uint count)
         public
-        onlyOwner
     {
         for (uint i = 0; i < count; i++) {
             to.transfer(amount);

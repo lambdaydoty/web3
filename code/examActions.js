@@ -15,27 +15,42 @@ const web3 = new Web3(new Web3.providers.HttpProvider())
  */
 
 module.exports = network => address => txhash => {
+  address = address.toLowerCase()
+
+  function byAddress (x) {
+    return x.action
+      && x.action.to
+      && x.action.to.toLowerCase() === address
+  }
+
+  function extract ({
+    action: { callType, from, gas, input, to, value },
+    transactionHash,
+    subtraces,    // # of chilren within this action
+    traceAddress, // array of indices action sequence
+    type,
+  }) {
+    return {
+      id: transactionHash,
+      address: to.toLowerCase(),
+      amount: web3.utils.fromWei(value, 'ether'),
+      traceAddress: traceAddress.join('.'),
+      // tag: null,
+      // fee: null,
+      // gasPrice: null,
+      input,
+      type,
+    }
+  }
+
   return traceVm(network, txhash)
     .then(actions => {
       if (!actions) {
         return []
       }
       return actions
-        .filter(x => x.action.to.toLowerCase() === address.toLowerCase())
-        .map((
-          {
-            action: { from, gas, input, to, value },
-            transactionHash,
-          }) => ({
-            id: transactionHash,
-            address: to.toLowerCase(),
-            tag: null,
-            amount: web3.utils.fromWei(value, 'ether'),
-            fee: null,
-            gasPrice: null,
-            input,
-          })
-        )
+        .filter(byAddress)
+        .map(extract)
     })
     .catch(console.log)
 }

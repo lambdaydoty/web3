@@ -1,7 +1,3 @@
-const pify = require('pify')
-const request = require('request')
-const { JSDOM } = require('jsdom')
-
 /*
  * Usage:
  *
@@ -12,9 +8,45 @@ const { JSDOM } = require('jsdom')
  *      .then(x => internals = x)
  *
  *    // example return: [ { action: ...}, { action: ...}, ...]
+ *
+ * Reference:
+ *  https://github.com/paritytech/parity-ethereum/issues/9286
  */
 
-module.exports = (network, txhash) => {
+module.exports = tracerRpc
+
+function tracerRpc (network, txhash) {
+  const pify = require('pify')
+  const request = require('request')
+
+  const url = {
+    mainnet: `http://secret.garden`,
+    testnet: `http://localhost:6545`,
+  }
+  const data = {
+    method: "trace_transaction",
+    "params": [ txhash ],
+    "id": 1,
+    "jsonrpc": "2.0",
+  }
+  const options = {
+    uri: url[network],
+    method: 'POST',
+  }
+  options.json = data
+
+  return pify(request, { multiArgs: true })(options)
+    .then(([httpResponse, body]) => {
+      return body['result']
+    })
+    .catch(console.log)
+}
+
+function tracerWeb (network, txhash) {
+  const pify = require('pify')
+  const request = require('request')
+  const { JSDOM } = require('jsdom')
+
   const errorMessage = 'The requested transaction hash does not exist.'
   const url = {
     mainnet: `https://etherscan.io/vmtrace?txhash=${txhash}&type=parity#raw`,
@@ -33,7 +65,4 @@ module.exports = (network, txhash) => {
       return result
     })
     .catch(console.log)
-}
-
-function examActions () {
 }
