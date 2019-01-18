@@ -1,0 +1,26 @@
+{
+  "contractName": "Mobro",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "name": "_from",
+          "type": "address"
+        },
+        {
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "name": "_value",
+          "type": "uint256"
+        }
+      ],
+      "name": "serverTransfer",
+      "outputs": [],
+      "payable": false,
+      "type": "function",
+      "signature": "0xbc304e55"
+    }
+  ]
+}
